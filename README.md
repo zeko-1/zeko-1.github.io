@@ -1,20 +1,32 @@
-# Personal Portfolio
+# Zakia Mahmoud Hanafi — Portfolio
 
-A responsive Arabic portfolio website built with plain HTML, CSS, and JavaScript. It works directly with GitHub Pages—no build step required.
+Personal portfolio website for **Zakia Mahmoud Hanafi**, a Computer Science student focused on Software Development and AI/ML Development.
 
-## Personalize it
+## Featured Projects
 
-In `index.html`, replace these placeholders:
+- **AI Supply Chain Commander** — Multi-agent procurement workflow for incident classification, supplier analysis, and recovery planning.
+- **Lumi World** — AI-powered Chrome extension that helps users compare products and stay within budget.
+- **NovaShip Averis** — AI-assisted shipping-document verification workflow built with Next.js, FastAPI, and LangGraph.
+- **MajorDNA** — Explainable career recommendation system for university students, built with Java, JavaFX, and OOP.
+- **EcoAI Cooling** — AI and IoT concept for sustainable data-center cooling and water recycling.
 
-- `[اسمك]` with your name
-- `hello@example.com` with your email address
-- `#` in project and social links with your real URLs
-- Project titles and descriptions with your own work
+## Tech Stack
 
-## Publish on GitHub Pages
+HTML, CSS, JavaScript, responsive design, and GitHub Pages.
 
-1. Create a public GitHub repository named `YOUR_USERNAME.github.io`.
-2. Upload `index.html`, `style.css`, and `script.js` to the repository root.
-3. In the repository, open **Settings → Pages**.
-4. Set the source to **Deploy from a branch**, then select **main** and **/(root)**.
-5. Save. Your website will be available at `https://YOUR_USERNAME.github.io` shortly after publishing.
+## Run Locally
+
+Open `index.html` in a browser. No installation or build step is needed.
+
+## Publish with GitHub Pages
+
+1. Open **Settings → Pages** in this repository.
+2. Choose **Deploy from a branch**.
+3. Select the `main` branch and `/(root)` folder.
+4. Save. The website will be published at [zeko-1.github.io](https://zeko-1.github.io).
+
+## Contact
+
+- [GitHub](https://github.com/zeko-1)
+- [LinkedIn](https://www.linkedin.com/in/zakia-mahmoud-b0812331a)
+- [Email](mailto:zakiahanafy1@gmail.com)
