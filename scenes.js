@@ -49,45 +49,121 @@
     }
   }
 
-  const head = Array.from({ length: 36 }, (_, row) => {
-    const theta = .06 + row / 35 * 3;
-    return Array.from({ length: 61 }, (_, col) => {
-      const phi = col / 60 * TAU;
-      const front = Math.max(0, Math.cos(phi));
-      const jaw = 1 - .27 * Math.max(0, -Math.cos(theta));
-      const x = Math.sin(theta) * Math.sin(phi) * .81 * jaw;
-      const z = Math.sin(theta) * Math.cos(phi) * .75 +
-        .13 * front ** 14 * Math.exp(-((theta - 1.69) ** 2) / .05);
-      return [x, -Math.cos(theta) * 1.17, z];
+  // Cross-sections run from the crown down through the jaw and neck.
+  // Each row gives height, rear contour, front contour, and half-width.
+  const profile = [
+    [-1.17, -.29, -.29, .01], [-1.14, -.55, -.06, .25],
+    [-1.06, -.74, .20, .43], [-.93, -.87, .39, .54],
+    [-.75, -.93, .49, .60], [-.55, -.94, .53, .61],
+    [-.39, -.91, .54, .58], [-.27, -.87, .51, .54],
+    [-.15, -.81, .54, .53], [-.04, -.76, .61, .52],
+    [.05, -.72, .69, .49], [.12, -.68, .60, .47],
+    [.22, -.65, .53, .46], [.34, -.61, .52, .44],
+    [.46, -.57, .55, .40], [.55, -.55, .49, .36],
+    [.63, -.54, .35, .32], [.70, -.55, .16, .30],
+    [.81, -.59, .03, .29], [1.01, -.64, .02, .33],
+    [1.18, -.76, .10, .40], [1.32, -.90, .25, .48]
+  ];
+
+  function profileRow(y) {
+    const index = profile.findIndex((row, i) => i < profile.length - 1 && y <= profile[i + 1][0]);
+    const a = profile[index];
+    const b = profile[index + 1];
+    const prev = profile[Math.max(index - 1, 0)];
+    const next = profile[Math.min(index + 2, profile.length - 1)];
+    const span = b[0] - a[0];
+    const t = (y - a[0]) / span;
+    return [1, 2, 3].map(col => {
+      const startSlope = (b[col] - prev[col]) / (b[0] - prev[0]);
+      const endSlope = (next[col] - a[col]) / (next[0] - a[0]);
+      return mix(a[col], b[col], t * t * (3 - 2 * t)) +
+        span * t * (1 - t) * ((1 - t) * startSlope - t * endSlope);
+    });
+  }
+
+  const head = Array.from({ length: 62 }, (_, row) => {
+    const y = Math.min(1.32, mix(-1.17, 1.32, row / 61));
+    const [back, front, width] = profileRow(y);
+    return Array.from({ length: 45 }, (_, col) => {
+      const angle = col / 44 * TAU;
+      const side = Math.sin(angle);
+      const forward = (front + back) / 2 + Math.cos(angle) * (front - back) / 2;
+      const temple = Math.exp(-((y + .23) ** 2 / .016 + (Math.cos(angle) - .71) ** 2 / .06));
+      return [side * (width - .035 * temple), y, forward];
     });
   });
 
+  function orbitTrail(ctx, x, y, scale, start, end) {
+    const gradient = ctx.createLinearGradient(x - scale, y, x + scale, y);
+    gradient.addColorStop(0, '#d799ff00');
+    gradient.addColorStop(.22, '#c281ffae');
+    gradient.addColorStop(.49, '#8baaff8c');
+    gradient.addColorStop(.68, '#78d6f5ac');
+    gradient.addColorStop(1, '#79bdff00');
+    ctx.strokeStyle = gradient;
+    ctx.lineWidth = 1.15;
+    ctx.shadowColor = '#a478ff';
+    ctx.shadowBlur = 13;
+    ctx.beginPath();
+    ctx.ellipse(x, y, scale * 1.29, scale * .33, -.29, start, end);
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+  }
+
   function face(ctx, w, h, time) {
     const small = narrow.matches;
-    const x = w * (small ? .63 : .74);
-    const y = h * (small ? .73 : .52);
-    const s = Math.min(w * (small ? .32 : .245), h * (small ? .23 : .35));
-    glow(ctx, x, y, s * 1.45, '#7651be44');
-    ellipse(ctx, x, y + s * .23, s * 1.46, s * .34, -.34, '#b893fa6b');
-    ellipse(ctx, x, y + s * .23, s * 1.52, s * .36, -.34, '#537fca35');
-    const angle = -.75 + Math.sin(time * .55) * .13;
-    const project = ([px, py, pz]) => {
-      const depth = Math.sin(angle) * px + Math.cos(angle) * pz;
-      const sx = Math.cos(angle) * px - Math.sin(angle) * pz;
-      const glitch = Math.sin(py * 43 + time * 2) > .92 ? s * .035 : 0;
-      return [x + sx * s + glitch, y + (py - depth * .055) * s];
+    const x = w * (small ? .57 : .76);
+    const y = h * (small ? .74 : .53);
+    const s = Math.min(w * (small ? .36 : .25), h * (small ? .19 : .34));
+    const yaw = .15 + Math.sin(time * .55) * .055;
+    const sin = Math.sin(yaw);
+    const cos = Math.cos(yaw);
+    const project = ([side, py, forward], glitch = false) => {
+      const depth = side * cos + forward * sin;
+      const perspective = 1 + depth * .08;
+      const offset = glitch && Math.sin(py * 67 + time * .8) > .987 ? s * .015 : 0;
+      return [x + (side * sin - forward * cos) * s * perspective + offset,
+        y + py * s * perspective];
     };
-    wire(ctx, head, project, '#bba0f083', (row, col) => (row * 17 + col * 7) % 47 < 4);
-    ctx.fillStyle = '#b8a3fc55';
-    for (let i = 0; i < 16; i++) {
-      const level = Math.sin(i * 31.7) * s;
-      ctx.fillRect(x + Math.sin(i * 81) * s, y + level, 8 + i * 1.3, 1);
+    const rim = head.map(row => row.reduce((best, point) => project(point)[0] < project(best)[0] ? point : best));
+    const farRim = head.map(row => row.reduce((best, point) => project(point)[0] > project(best)[0] ? point : best));
+
+    glow(ctx, x, y, s * 1.5, '#7755c54a');
+    orbitTrail(ctx, x, y + s * .30, s, Math.PI, TAU);
+    ctx.beginPath();
+    [...rim, ...farRim.reverse()].forEach((point, index) => {
+      const [px, py] = project(point);
+      if (index === 0) ctx.moveTo(px, py);
+      else ctx.lineTo(px, py);
+    });
+    ctx.closePath();
+    const shade = ctx.createLinearGradient(x - s, y - s, x + s, y + s);
+    shade.addColorStop(0, '#201b3bdb');
+    shade.addColorStop(.55, '#16152bb8');
+    shade.addColorStop(1, '#19112dce');
+    ctx.fillStyle = shade;
+    ctx.fill();
+    ctx.strokeStyle = '#b7a1ed74';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    ctx.save();
+    ctx.clip();
+    wire(ctx, head.map(row => row.slice(22)), point => project(point), '#b2a0ee18');
+    wire(ctx, head.map(row => row.slice(0, 23)), point => project(point, true), '#c6a9ff76',
+      (row, col) => (row * 13 + col * 17) % 113 < 3);
+    const [earX, earY] = project([.51, -.11, -.40]);
+    for (let i = 0; i < 3; i++) {
+      ellipse(ctx, earX, earY + i * s * .006, s * (.085 - i * .017),
+        s * (.148 - i * .028), -.19, '#a99ae543');
     }
+    ctx.restore();
+
+    orbitTrail(ctx, x, y + s * .30, s, 0, Math.PI);
+    glow(ctx, x - s * .54, y + s * .72, s * .24, '#76bbff60');
     const horizonY = h + w * .30;
-    const radius = w * .41;
     glow(ctx, w * .87, h * 1.04, w * .35, '#5162ce4c');
-    ellipse(ctx, w * .87, horizonY, w * .57, radius, -.16, '#7f9aff7d');
-    ellipse(ctx, w * .87, horizonY, w * .58, radius + 5, -.16, '#a46eef40');
+    ellipse(ctx, w * .87, horizonY, w * .57, w * .41, -.16, '#7f9aff7d');
+    ellipse(ctx, w * .87, horizonY, w * .58, w * .41 + 5, -.16, '#a46eef40');
   }
 
   // Each finger is a tapered tube along a joint chain. The palm is a flattened mesh.

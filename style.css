@@ -38,7 +38,7 @@ h2 em { color: var(--lime); font-style: normal; }
 .scene-art { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
 .hero { background: radial-gradient(ellipse at 73% 60%, #241440 0, #0b0e22 47%, #070916 76%); }
 .hero-copy { padding: 3rem 0 5rem; }
-.hero h1 { font-size: clamp(3.5rem, 7.8vw, 8rem); margin-bottom: .25em; }
+.hero h1 { font-size: clamp(3.5rem, 6.1vw, 6.9rem); margin-bottom: .25em; }
 .hero-copy > p:not(.eyebrow) { max-width: 38ch; }
 .byline { font-size: clamp(1.05rem, 2.5vw, 1.45rem); }
 .byline strong, .accent, .section-label, .eyebrow, .text-link { color: var(--lime); }
