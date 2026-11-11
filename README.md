@@ -16,7 +16,7 @@ HTML, CSS, JavaScript, responsive design, and GitHub Pages.
 
 ## Run Locally
 
-Open `index.html` in a browser. No installation or build step is needed.
+Run `node preview.cjs` and open http://127.0.0.1:4173. No installation or build step is needed. You can also open `index.html` directly.
 
 ## Publish with GitHub Pages
 
@@ -30,3 +30,9 @@ Open `index.html` in a browser. No installation or build step is needed.
 - [GitHub](https://github.com/zeko-1)
 - [LinkedIn](https://www.linkedin.com/in/zakia-mahmoud-b0812331a)
 - [Email](mailto:zakiahanafy1@gmail.com)
+
+## Manage projects
+
+Sign in as the repository owner on GitHub and open [index.html in the repository editor](https://github.com/zeko-1/zeko-1.github.io/edit/main/index.html). Update the articles inside `#project-list`, or add a new article by copying one of the existing cards. The orbit and detail views use the same articles, so the content only needs to be edited once. Store project screenshots in `assets/`.
+
+Save project changes to a branch and open a pull request for review. GitHub authenticates the editor and controls who can update this repository. Keep repository write access limited to the owner to keep management owner-only. The public portfolio has no editor, sign-in form, or write endpoint.

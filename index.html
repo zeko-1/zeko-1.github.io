@@ -7,65 +7,55 @@
     <title>Zakia Mahmoud Hanafi — Software & AI/ML Developer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="noise" aria-hidden="true"></div>
+    <a class="skip" href="#home">Skip to content</a>
     <header class="site-header">
-      <a class="logo" href="#home" aria-label="Home"><span>Z</span><i></i></a>
-      <button class="menu-button" aria-expanded="false" aria-controls="nav">Menu <span></span></button>
-      <nav id="nav" class="nav" aria-label="Main navigation">
-        <a href="#about">About</a><a href="#skills">Skills</a><a href="#work">Projects</a><a href="#contact">Contact</a>
+      <a class="logo" href="#home"><span class="logo-orbit" aria-hidden="true"></span>Zakia</a>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#home">Home</a><a href="#work">Projects</a><a href="#about">About</a><a href="#contact">Contact</a>
       </nav>
       <a class="nav-cv" href="assets/Zakia_Mahmoud_CV_public.pdf" download>Download CV ↙</a>
     </header>
-
     <main id="home">
-      <section class="hero section reveal">
-        <p class="eyebrow">SOFTWARE DEVELOPER · AI / ML DEVELOPER · MALAYSIA</p>
-        <div class="hero-layout">
-          <div>
-            <h1><em class="name-brown">Zakia</em><br /><em>Mahmoud</em> <em class="name-brown">Hanafi</em></h1>
-            <p class="hero-tagline">Building intelligent systems<br />for real world decisions.</p>
-            <p class="hero-intro">Computer Science student creating AI powered products, multi agent workflows, and thoughtful user experiences.</p>
-            <div class="hero-actions"><a class="button button-solid" href="#work">View my work <span>↘</span></a><a class="button button-line" href="#contact">Get in touch</a></div>
+      <section class="hero scene" aria-labelledby="intro-title">
+        <canvas class="scene-art" data-scene="face" aria-hidden="true"></canvas>
+        <div class="frame hero-copy">
+          <p class="eyebrow"><span class="signal"></span> SOFTWARE &amp; AI/ML DEVELOPER · MALAYSIA</p>
+          <h1 id="intro-title">Exploring the<br>universe of<br>intelligence<span class="accent">.</span></h1>
+          <p class="byline">with <strong>Zakia Mahmoud Hanafi</strong></p>
+          <p>Building intelligent systems for real-world decisions, from AI-powered products to multi-agent workflows.</p>
+          <a class="button button-solid" href="#touch">Explore portfolio <span aria-hidden="true">↗</span></a>
+        </div>
+        <a class="scroll-cue" href="#touch">SCROLL TO EXPLORE <span aria-hidden="true">↓</span></a>
+      </section>
+      <section id="touch" class="touch scene" aria-labelledby="touch-title">
+        <canvas class="scene-art" data-scene="touch" aria-hidden="true"></canvas>
+        <div class="frame touch-copy">
+          <h2 id="touch-title">Touch to begin<br>the journey.</h2>
+          <a class="button button-line" id="touch-trigger" href="#work">Enter the orbit <span aria-hidden="true">↓</span></a>
+        </div>
+      </section>
+      <section id="work" aria-labelledby="work-title">
+        <div class="orbit-scene scene">
+          <canvas class="scene-art" data-scene="galaxy" aria-hidden="true"></canvas>
+          <div class="frame orbit-copy">
+            <p class="section-label">PROJECTS &amp; ACHIEVEMENTS</p>
+            <h2 id="work-title">A glimpse of<br>my journey.</h2>
+            <p>Explore my projects and achievements, from AI orchestration to tools that help students make career decisions.</p>
+            <a class="text-link" href="#archive">Browse all projects <span aria-hidden="true">↓</span></a>
           </div>
-          <div class="hero-orbit" aria-hidden="true"><span>AI SYSTEMS</span><span>·</span><span>HUMAN IMPACT</span><span>·</span><span>FULL STACK</span></div>
+          <div class="orbit-controls" aria-label="Explore projects and achievements"></div>
         </div>
-        <p class="scroll-cue">SCROLL TO EXPLORE <span>↓</span></p>
-      </section>
-
-      <section id="about" class="about section reveal">
-        <div class="section-label"><span>01</span> ABOUT ME</div>
-        <div class="about-layout">
-          <div class="portrait-wrap"><img src="assets/zakia-photo.jpeg" alt="Portrait of Zakia Mahmoud Hanafi" /><div class="portrait-ring">ZMH · ZMH · ZMH · ZMH ·</div></div>
-          <div class="about-copy">
-            <h2>Curious by nature.<br />Intentional by <em>craft.</em></h2>
-            <p>I'm Zakia, an AI track Computer Science student at City University Cyberjaya. I build modular software that turns ambiguous real world problems into useful, people first digital products.</p>
-            <p>My work sits at the intersection of full stack development, AI orchestration, and product thinking, from intelligent supply chain workflows to tools that help students make career decisions.</p>
-            <div class="stat-grid"><div><strong>2nd</strong><span>Year student</span></div><div><strong>3×</strong><span>Dean's List</span></div><div><strong>5</strong><span>Featured projects</span></div></div>
-          </div>
-        </div>
-      </section>
-
-      <section id="skills" class="skills-section section reveal">
-        <div class="section-label"><span>02</span> TOOLKIT</div>
-        <h2>Technical skills</h2>
-        <p class="section-intro">The tools and systems I use to build, analyse, and deploy thoughtful solutions.</p>
-        <div class="skill-grid">
-          <article><h3>Languages</h3><div class="chips"><span>Python</span><span>Java</span><span>SQL</span><span>JavaScript</span></div></article>
-          <article><h3>Frameworks</h3><div class="chips"><span>React</span><span>Next.js</span><span>FastAPI</span><span>JavaFX</span></div></article>
-          <article><h3>AI / ML</h3><div class="chips"><span>Multi Agent AI</span><span>Machine Learning</span><span>NLP</span><span>Deep Learning</span></div></article>
-          <article><h3>Data & Cloud</h3><div class="chips"><span>Supabase</span><span>PostgreSQL</span><span>Pandas</span><span>NumPy</span></div></article>
-          <article><h3>Tools</h3><div class="chips"><span>Git / GitHub</span><span>Docker</span><span>VS Code</span><span>Figma</span></div></article>
-          <article><h3>Focus areas</h3><div class="chips"><span>XAI</span><span>AI Workflows</span><span>UI/UX</span><span>OOP</span></div></article>
-        </div>
-      </section>
-
-      <section id="work" class="projects-section section reveal">
-        <div class="projects-head"><div><div class="section-label"><span>03</span> PORTFOLIO</div><h2>Real world projects</h2></div><p>End to end ideas and solutions, from research and product design to implemented systems.</p></div>
-        <div class="project-grid">
+        <div id="archive" class="archive section">
+          <a class="folder" href="#project-list">
+            <span class="folder-icon" aria-hidden="true">☁</span>
+            <h2>My Projects</h2>
+            <p>AI, software, and real-world impact.</p>
+            <span class="text-link">Open collection ↓</span>
+          </a>
+        <div class="project-grid" id="project-list">
           <article class="project-card project-wide">
             <div class="project-visual"><img src="assets/commander-center.png" alt="AutoPilot Supply Chain Commander Center dashboard" /></div>
             <div class="project-body"><p class="project-kicker">MULTI AGENT AI · 2026</p><h3>AI Supply Chain Commander</h3><p>AI agents that identify procurement needs, classify incidents, analyse suppliers, and support approval based recovery decisions.</p><div class="card-bottom"><div class="chips"><span>AI Agents</span><span>Supabase</span><span>Slack</span></div><a href="https://github.com/zeko-1/AutoPilot-Supply-Chain-Commander-Center" target="_blank" rel="noreferrer">GitHub ↗</a></div></div>
@@ -87,14 +77,62 @@
             <div class="project-body"><p class="project-kicker">AI / ML · IOT · SUSTAINABILITY</p><h3>EcoAI Cooling</h3><p>A future facing concept for AI assisted data center cooling that uses sensor data to optimise cooling decisions and reduce water waste.</p><div class="card-bottom"><div class="chips"><span>AI/ML</span><span>IoT</span><span>Sustainability</span></div><a href="assets/ECOAI-slides.pdf" target="_blank">View slides ↗</a></div></div>
           </article>
         </div>
+        </div>
+      </section>
+      <section class="why scene" aria-labelledby="why-title">
+        <canvas class="scene-art" data-scene="why" aria-hidden="true"></canvas>
+        <div class="frame">
+          <h2 id="why-title">Why work <em>with me</em></h2>
+          <ul class="strengths">
+            <li><span aria-hidden="true">✳</span>Build AI solutions</li>
+            <li><span aria-hidden="true">◎</span>Turn ideas into products</li>
+            <li><span aria-hidden="true">◇</span>Collaborate across disciplines</li>
+            <li><span aria-hidden="true">↗</span>Learn and adapt</li>
+          </ul>
+        </div>
+      </section>
+      <section id="about" class="about section">
+        <div class="section-label">ABOUT ME</div>
+        <div class="about-layout">
+          <div class="portrait-wrap"><img src="assets/zakia-photo.jpeg" alt="Portrait of Zakia Mahmoud Hanafi" /></div>
+          <div class="about-copy">
+            <h2>Curious by nature.<br />Intentional by <em>craft.</em></h2>
+            <p>I'm Zakia, an AI track Computer Science student at City University Cyberjaya. I build modular software that turns ambiguous real world problems into useful, people first digital products.</p>
+            <p>My work sits at the intersection of full stack development, AI orchestration, and product thinking, from intelligent supply chain workflows to tools that help students make career decisions.</p>
+            <div class="stat-grid"><div><strong>2nd</strong><span>Year student</span></div><div><strong>3×</strong><span>Dean's List</span></div><div><strong>5</strong><span>Featured projects</span></div></div>
+          </div>
+        </div>
       </section>
 
-      <section id="contact" class="contact section reveal">
-        <div class="contact-copy"><div class="section-label"><span>04</span> CONTACT</div><h2>Let's connect.</h2><p>Open to Software Development and AI/ML Development internship opportunities, collaborative projects, and meaningful conversations.</p><div class="contact-links"><a href="https://www.linkedin.com/in/zakia-mahmoud-b0812331a" target="_blank" rel="noreferrer"><b>in</b><span>LinkedIn<small>zakia-mahmoud-b0812331a</small></span><i>↗</i></a><a href="mailto:zakiahanafy1@gmail.com"><b>✉</b><span>Email<small>zakiahanafy1@gmail.com</small></span><i>↗</i></a></div></div>
+      <section id="skills" class="skills-section section">
+        <div class="section-label">TOOLKIT</div>
+        <h2>Technical skills</h2>
+        <p class="section-intro">The tools and systems I use to build, analyse, and deploy thoughtful solutions.</p>
+        <div class="skill-grid">
+          <article><h3>Languages</h3><div class="chips"><span>Python</span><span>Java</span><span>SQL</span><span>JavaScript</span></div></article>
+          <article><h3>Frameworks</h3><div class="chips"><span>React</span><span>Next.js</span><span>FastAPI</span><span>JavaFX</span></div></article>
+          <article><h3>AI / ML</h3><div class="chips"><span>Multi Agent AI</span><span>Machine Learning</span><span>NLP</span><span>Deep Learning</span></div></article>
+          <article><h3>Data & Cloud</h3><div class="chips"><span>Supabase</span><span>PostgreSQL</span><span>Pandas</span><span>NumPy</span></div></article>
+          <article><h3>Tools</h3><div class="chips"><span>Git / GitHub</span><span>Docker</span><span>VS Code</span><span>Figma</span></div></article>
+          <article><h3>Focus areas</h3><div class="chips"><span>XAI</span><span>AI Workflows</span><span>UI/UX</span><span>OOP</span></div></article>
+        </div>
+      </section>
+
+      <section id="contact" class="contact section">
+        <div class="contact-copy"><div class="section-label">CONTACT</div><h2>Let's connect.</h2><p>Open to Software Development and AI/ML Development internship opportunities, collaborative projects, and meaningful conversations.</p><div class="contact-links"><a href="https://www.linkedin.com/in/zakia-mahmoud-b0812331a" target="_blank" rel="noreferrer"><b>in</b><span>LinkedIn<small>zakia-mahmoud-b0812331a</small></span><i>↗</i></a><a href="mailto:zakiahanafy1@gmail.com"><b>✉</b><span>Email<small>zakiahanafy1@gmail.com</small></span><i>↗</i></a></div></div>
         <aside class="contact-card"><p class="eyebrow">AVAILABLE FOR INTERNSHIPS</p><h3>Ready to work<br />together?</h3><p>I'm seeking opportunities where I can grow as a software and AI/ML developer while contributing to products that matter.</p><a class="button button-solid" href="assets/Zakia_Mahmoud_CV_public.pdf" download>Download CV <span>↙</span></a></aside>
       </section>
     </main>
     <footer><span>© 2026 Zakia Mahmoud Hanafi. Built with care.</span><span><a href="https://github.com/zeko-1" target="_blank" rel="noreferrer">GitHub</a> · <a href="https://www.linkedin.com/in/zakia-mahmoud-b0812331a" target="_blank" rel="noreferrer">LinkedIn</a></span></footer>
-    <script src="script.js"></script>
+    <dialog id="project-dialog" aria-labelledby="dialog-title">
+      <div class="dialog-bar">
+        <button type="button" data-step="-1" aria-label="Previous item">←</button>
+        <button type="button" data-step="1" aria-label="Next item">→</button>
+        <button type="button" class="dialog-close" aria-label="Close details">×</button>
+      </div>
+      <div class="dialog-content"></div>
+    </dialog>
+    <script src="scenes.js" defer></script>
+    <script src="script.js" defer></script>
   </body>
 </html>
